@@ -18,7 +18,7 @@ class Solution:
         #   'dW2':   2D list (gradient w.r.t. W2, rounded to 4 decimals)
         #   'db2':   1D list (gradient w.r.t. b2, rounded to 4 decimals)
         x, W1, b1, W2, b2, y_true = map(np.array, [x, W1, b1, W2, b2, y_true])
-        z1 = np.dot(W1, x) + b1
+        z1 = W1 @ x + b1
         a1 = np.maximum(0, z1)
         z2 = np.dot(W2, a1) + b2
         pred = z2
