@@ -20,12 +20,12 @@ class Solution:
         x, W1, b1, W2, b2, y_true = map(np.array, [x, W1, b1, W2, b2, y_true])
         z1 = W1 @ x + b1
         a1 = np.maximum(0, z1)
-        z2 = np.dot(W2, a1) + b2
+        z2 = W2 @ a1 + b2
         pred = z2
         outGrad = (2 * (z2 - y_true)) / np.size(y_true)
         dW2 = np.outer(outGrad, a1)
         db2 = outGrad
-        reluGrad = np.dot(W2.T, outGrad)
+        reluGrad = W2.T @ outGrad
         mask = (z1 > 0).astype(float)
         outGrad1 = reluGrad * mask
         dW1 = np.outer(outGrad1, x)
